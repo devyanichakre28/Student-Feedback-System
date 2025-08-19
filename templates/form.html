@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teaching Feedback Form</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-image: url("/static/campus.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style the form */
+        form {
+            max-width: 600px;
+            margin: 40px auto;
+            border-radius: 5%;
+            padding: 20px;
+            background-color: #3333335f;
+            color: #fff;
+            box-shadow: 10px 10px 20px #636262;
+            /* display: flex; */
+
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form select,
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        form button.btn {
+            background-color: #787878;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        form button.btn:hover {
+            background-color: #ffd6d6;
+            color: #333;
+        }
+
+        form textarea {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Style the form's required asterisks */
+        #require {
+            color: red;
+        }
+
+        /* Center-align the page content */
+        .center {
+            text-align: center;
+        }
+
+        /* Add some spacing between elements */
+        .container p {
+            margin-bottom: 15px;
+        }
+
+        /* Make the form responsive */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+        }
+        .online{
+            margin-left: 495px;
+            margin-top: 10px;
+            height: 20px;
+            width: 550px;
+        }
+        .online p{
+            color: black;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="online">
+        {% if sname %}
+          <marquee direction="left"> <p>Welcome, {{ sname }}</p></marquee> 
+        {% endif %}
+        </div>
+    
+
+    <form method="post" action="{% url 'data' %}">
+        {% csrf_token %}   
+        <div>
+            <label for="tname">Select teacher</Select></label>
+            <select name="tname" id="Marking10">
+                {% for t in tname %}
+                <option value="{{ t }}">{{ t }}</option>
+                {% endfor %}
+            </select>
+            <label for="subject">Subject</label>
+            <select name="subject" id="subject">
+                {% for t in ssub %}
+                <option value="{{t}}">{{t }}</option>
+                {% endfor %}
+            </select>
+            <label for="semester">Semester</label>
+            <select name="sem" id="sem">
+                {% if ssem %}
+                <option value="{{ssem}}">{{ssem}}</option>
+                {% endif %}
+            </select>
+            <label for="Marking1">1. Communication and presentation skills</label>
+            <select name="Marking1" id="Marking1">
+                <option value="1">Very bad</option>
+                <option value="2">Poor</option>
+                <option value="3">Good</option>
+                <option value="4">Better</option>
+                <option value="5">Excellent</option>
+            </select>
+
+            <label for="Marking2">2. Explanation with practical examples to understand the subject.</label>
+            <select name="Marking2" id="Marking2">
+                <option value="1">Very bad</option>
+                <option value="2">Poor</option>
+                <option value="3">Good</option>
+                <option value="4">Better</option>
+                <option value="5">Excellent</option>
+            </select>
+
+            <label for="Marking3">3. Well Prepared for the lectures with notes referring to renowned books?</label>
+            <select name="Marking3" id="Marking3">
+                <option value="1">Very bad</option>
+                <option value="2">Poor</option>
+                <option value="3">Good</option>
+                <option value="4">Better</option>
+                <option value="5">Excellent</option>
+            </select>
+
+            <label for="Marking4">4. Syllabus completion and exam preparation</label>
+            <select name="Marking4" id="Marking4">
+                <option value="1">Very bad</option>
+                <option value="2">Poor</option>
+                <option value="3">Good</option>
+                <option value="4">Better</option>
+                <option value="5">Excellent</option>
+            </select>
+
+            <label for="Marking5">5. Effective use of teaching tools and blackboard</label>
+            <select name="Marking5" id="Marking5">
+                <option value="1">Very bad</option>
+                <option value="2">Poor</option>
+                <option value="3">Good</option>
+                <option value="4">Better</option>
+                <option value="5">Excellent</option>
+            </select>
+
+            <label for="Marking6">6. Topics covered out of 5</label>
+            <select name="Marking6" id="Marking6">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <label for="comment">7. Any comment about Subject</label>
+            <textarea name="comment" id="comment1" cols="30" rows="5"></textarea>
+        </div>
+        <center><button type="submit" class="btn">Submit</button></center>
+       
+    </form>
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var teacherDropdown = document.getElementById('Marking10');
+            var subjectDropdown = document.getElementById('subject');
+        
+            // Django context data for teachers (list1) and subjects (list2)
+            var teachers = {{ tname|safe }};
+            var subjects = {{ ssub|safe }};
+        
+            // Create mapping of teachers to subjects
+            var teacherToSubjects = {};
+        
+            // Populate teacherToSubjects mapping based on Django context data
+            for (var i = 0; i < teachers.length; i++) {
+                var teacher = teachers[i];
+                var subject = subjects[i];
+                
+                if (!teacherToSubjects[teacher]) {
+                    teacherToSubjects[teacher] = [];
+                }
+        
+                teacherToSubjects[teacher].push(subject);
+            }
+        
+            // Function to update subject dropdown based on selected teacher
+            teacherDropdown.addEventListener('change', function() {
+                var selectedTeacher = teacherDropdown.value;
+                var subjects = teacherToSubjects[selectedTeacher] || [];
+        
+                // Clear existing options
+                subjectDropdown.innerHTML = '';
+        
+                // Populate subject dropdown with new options
+                subjects.forEach(function(subject) {
+                    var option = document.createElement('option');
+                    option.text = subject;
+                    option.value = subject;
+                    subjectDropdown.add(option);
+                });
+            });
+        
+            // Trigger change event on page load (if default teacher is selected)
+            var initialTeacher = teacherDropdown.value;
+            var initialSubjects = teacherToSubjects[initialTeacher] || [];
+            initialSubjects.forEach(function(subject) {
+                var option = document.createElement('option');
+                option.text = subject;
+                option.value = subject;
+                subjectDropdown.add(option);
+            });
+        });
+        </script>
+        
+</body>
+</html>

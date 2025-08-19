@@ -1,0 +1,21 @@
+.navbar{
+    /* background-color: rgb(244, 0, 0); */
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+
+
+}
+.navbar a{
+    text-decoration: none;
+    color: rgb(203, 147, 75);
+    padding: 10px;
+}
+.navbar a:hover{
+    color: rgb(207, 117, 0);
+}
+body {
+    background-image: url("B:\Django projects\core\static\campus.jpg");
+  }

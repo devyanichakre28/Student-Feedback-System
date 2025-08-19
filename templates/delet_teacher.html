@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Teacher</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background-image: url("/static/campus.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .nav {
+            text-align: center;
+            color: rgb(231, 191, 131);
+        }
+        form {
+            color: rgb(59, 58, 58);
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(100, 87, 80, 0.485);
+            padding: 20px;
+            margin: 10px auto;
+            width: 400px;
+            border-radius: 10px;
+        }
+        .form label {
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-align: center;
+            width: 100%;
+        }
+        .form input {
+            width: 300px;
+            height: 30px;
+            margin-bottom: 15px;
+            background-color: rgb(225, 218, 211);
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: center;
+        }
+        .form button {
+            width: 100px;
+            height: 40px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .navbar {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .navbar a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            background-color: #45a049;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h1>Shreeyash College Of Engineering and Technology</h1>
+        <h2>Delete Teacher</h2>
+    </div>
+    
+    <nav class="navbar">
+        <a href="/add_student">Add Student</a>
+        <a href="/add_teacher">Add Teacher</a>
+        <a href="/feedback">Feedback</a>
+    </nav>    
+    
+    <div class="form">
+        <form method="post" action="/">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tname">Teacher Name</label>
+                <input type="text" name="tname" id="tname" placeholder="Enter Teacher Name">
+                <label for="tsub">Subject</label>
+                <input type="text" name="tsub" id="tsub" placeholder="Enter Teaching Subject of Teacher">
+                <label for="tdepartment">Department</label>
+                <input type="text" name="tdep" id="tdep" placeholder="Teaching Department">
+                <label for="tsem">Semester</label>
+                <input type="text" name="tsem" id="tsem" placeholder="Teaching Semester">
+            </div>
+            <center><button type="submit">Delete</button></center>
+        </form>
+    </div>
+</body>
+</html>

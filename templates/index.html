@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body{
+            background-image: url("static/campus.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(100, 87, 80, 0.485);
+            padding: 20px;
+            margin: 20px auto;
+            width: 400px;
+            border-radius: 10px;
+            
+        }
+        label {
+            font-size: 30px;
+            text-align: center;
+        }
+        input {
+            width: 300px;
+            height: 25px;
+            margin-bottom: 10px;
+            background-color: rgb(225, 218, 211);
+            border-radius: 5px;
+
+        }
+        .nav {
+            text-align: center;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+        button a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h1>Shreeyash College Of Engineering and Technology</h1>
+        <h1>Student Login</h1>
+    </div>
+    <div class="form">
+        <form method="post" action="/">
+            {% csrf_token %}
+            <label for="ID">User ID</label><br>
+            <input type="number" id="ID" name="ID" placeholder="Enter Userid"><br>
+            <label for="PASS">Password</label><br>
+            <input type="password" id="PASS" name="PASS" placeholder="Enter Password"><br>
+            <label for="SEM">Semester</label><br>
+            <input type="number" id="SEM" name="SEM" placeholder="Enter Semester"><br><br>
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+    <button><a href="/a_login">Admin Login</a></button>
+</body>
+</html>

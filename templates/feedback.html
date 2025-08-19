@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body{
+            background-image: url("/static/campus.jpg"); 
+            /* background-repeat: no-repeat; */
+            /* background-size: cover; */
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .feedback-container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff75;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 40px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+        .feedback-section {
+            margin-bottom: 40px;
+        }
+
+        .feedback-section img {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/add_student">Add Student</a>
+        <a href="/add_teacher">Add Teacher</a>
+        <a href="/delet_teacher">Delete Teacher</a>
+    </nav>
+
+    <div class="feedback-container">
+        <h1>All Feedbacks Are Shown Here</h1><br>
+
+        <form method="get" action="">
+            <label for="Marking1">Select Department:</label><br>
+            <select name="Marking1" id="Marking1">
+                {% for t in dep %}
+                    <option value="{{ t }}">{{ t }}</option><br>
+                {% endfor %}
+            </select><br>
+            <label for="Marking2">Select Semester:</label><br>
+            <select name="Marking2" id="Marking2">
+                {% for t in sem %}
+                    <option value="{{ t }}">{{ t }}</option><br>
+                {% endfor %}
+            </select><br>
+            <button type="submit">Search for Teachers</button>
+        </form>
+
+        {% if ssub %}
+        <form method="get" action="">
+            <input type="hidden" name="Marking1" value="{{ request.GET.Marking1 }}">
+            <input type="hidden" name="Marking2" value="{{ request.GET.Marking2 }}">
+            <div>
+                <label for="teacher_select">Select Teacher:</label>
+                <select name="teacher_select" id="teacher_select">
+                    {% for t in ssub %}
+                        <option value="{{ t }}">{{ t }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Get Results</button>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if bar_plot_image_q1 and request.GET.teacher_select %}
+        <h2>Feedback Results</h2>
+        <div class="feedback-section">
+            <h3>Communication and Presentation Skills</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q1 }}" alt="Feedback Bar Plot Q1">
+        </div>
+        <div class="feedback-section">
+            <h3>Explanation with practical examples to understand the subject</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q2 }}" alt="Feedback Bar Plot Q2">
+        </div>
+        <div class="feedback-section">
+            <h3>Well Prepared for the lectures with notes referring to renowned books?</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q3 }}" alt="Feedback Bar Plot Q3">
+        </div>
+        <div class="feedback-section">
+            <h3>Syllabus completion and exam preparation</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q4 }}" alt="Feedback Bar Plot Q4">
+        </div>
+        <div class="feedback-section">
+            <h3>Effective use of teaching tools and blackboard</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q5 }}" alt="Feedback Bar Plot Q5">
+        </div>
+        <div class="feedback-section">
+            <h3>Overall Satisfaction</h3>
+            <img src="data:image/png;base64,{{ bar_plot_image_q6 }}" alt="Feedback Bar Plot Q6">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
