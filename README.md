@@ -1,2 +1,2 @@
 # Student-Feedback-System
-Python Html Css Mysql 
+I developed a College Feedback System website to gather and manage student feedback efficiently. The website was built using HTML, CSS, and Python (Django) for the Back end, with a MySQL database for secure and structured data management. This project demonstrates my ability to create full-stack web applications, integrating robust back-end technologies with a user-friendly front-end interface.
